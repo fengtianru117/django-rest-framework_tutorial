@@ -3,14 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <script>
-        function loadXMLDoc()
-        {
-
+        function loadXMLDoc() {
+            var xmlhttp;
+            if (window.XMLHttpRequest) {
+                //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                xmlhttp = new XMLHttpRequest();
+            }
+            else {
+                // IE6, IE5 浏览器执行代码
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
         }
     </script>
     <title>Title</title>
 </head>
 <body>
-
+用户名:<input type="text" name="username"><span id="nameTipMsg"></span><br>
+密码:<input type="password" name="password"><br>
 </body>
 </html>
