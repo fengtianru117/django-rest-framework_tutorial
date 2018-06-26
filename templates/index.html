@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!--
     <script>
         function loadXMLDoc() {
             var xmlhttp;
@@ -15,10 +16,29 @@
             }
         }
     </script>
+    -->
     <title>Title</title>
 </head>
 <body>
-用户名:<input type="text" name="username"><span id="nameTipMsg"></span><br>
+<script tpye="text/javascript">
+    function checkUsername(username) {
+        alert(username)
+        //发送ajax请求，验证用户名是否可用
+        //发送ajax代码包括四步，这四步是固定的
+        //发送ajax请求全靠浏览器内置的  XMLHttpRequest对象。
+        //使用 XMLHttpRequest对象可以在浏览器当中单独启动一个新的了浏览器线程，
+        //通过浏览器发送请求达到异步效果
+
+        //1，创建ajax核心对象XMLHttpRequest（浏览器内置，可以直接使用）
+        var X
+        //2，注册回调函数
+
+        //3，开启浏览器和服务器之间的通信
+
+        //4，发送ajax请求
+    }
+</script>
+用户名:<input type="text" name="username" onblur="checkUsername(this.value);"><span id="nameTipMsg"></span><br>
 密码:<input type="password" name="password"><br>
 </body>
 </html>
