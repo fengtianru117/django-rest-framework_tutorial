@@ -2,27 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!--
-    <script>
-        function loadXMLDoc() {
-            var xmlhttp;
-            if (window.XMLHttpRequest) {
-                //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
-                xmlhttp = new XMLHttpRequest();
-            }
-            else {
-                // IE6, IE5 浏览器执行代码
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-        }
-    </script>
-    -->
     <title>Title</title>
 </head>
 <body>
 <script tpye="text/javascript">
     function checkUsername(username) {
-        alert(username)
         //发送ajax请求，验证用户名是否可用
         //发送ajax代码包括四步，这四步是固定的
         //发送ajax请求全靠浏览器内置的  XMLHttpRequest对象。
@@ -30,12 +14,44 @@
         //通过浏览器发送请求达到异步效果
 
         //1，创建ajax核心对象XMLHttpRequest（浏览器内置，可以直接使用）
-        var X
+        var xmlhttp
+        if (window.XMLHttpRequest) {
+            //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // IE6, IE5 浏览器执行代码
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
         //2，注册回调函数
+        //程序执行到这里的时候，后面的回调函数并不会执行，只是将回调函数注册给xmlhttp对象
+        //等xmlhttp的readyState发生改变的时候，后面的回调函数才会执行
+        //XMLHttpRequest的readyState在请求和响应的过程中，该对象的状态从0-4：
+        // 0: 请求未初始化
+        // 1: 服务器连接已建立
+        // 2: 请求已接收
+        // 3: 请求处理中
+        // 4: 请求已完成，且响应已就绪
+        //可以用alert来测试
+        //alert(xmlhttp.readyState);
+        xmlhttp.onreadystatechange = function () {//当readyState改变的时候 回调一次这个函数
+            if(xmlhttp.readyState==4){
+                //400错误
+                //500错误
+                if(xmlhttp.status==200){
+
+                }else{
+                    alert(xmlhttp.status)
+                }
+            }
+        }
+
 
         //3，开启浏览器和服务器之间的通信
+            xmlhttp.open("GET",url,true);
 
         //4，发送ajax请求
+            xmlhttp.send();
     }
 </script>
 用户名:<input type="text" name="username" onblur="checkUsername(this.value);"><span id="nameTipMsg"></span><br>
