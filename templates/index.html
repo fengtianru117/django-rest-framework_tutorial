@@ -14,7 +14,7 @@
         //通过浏览器发送请求达到异步效果
 
         //1，创建ajax核心对象XMLHttpRequest（浏览器内置，可以直接使用）
-        var xmlhttp
+        var xmlhttp;
         if (window.XMLHttpRequest) {
             //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
             xmlhttp = new XMLHttpRequest();
@@ -35,23 +35,26 @@
         //可以用alert来测试
         //alert(xmlhttp.readyState);
         xmlhttp.onreadystatechange = function () {//当readyState改变的时候 回调一次这个函数
-            if(xmlhttp.readyState==4){
+            if (xmlhttp.readyState == 4) {
                 //400错误
                 //500错误
-                if(xmlhttp.status==200){
-
-                }else{
-                    alert(xmlhttp.status)
+                if (xmlhttp.status == 200) {
+                    //在浏览器端使用xmlhttp对象接受服务器返回回来的文本
+                    var s = xmlhttp.responseText;
+                    alert(s);
+                } else {
+                    //响应状态码
+                    alert(xmlhttp.status);
                 }
             }
         }
 
 
         //3，开启浏览器和服务器之间的通信
-            xmlhttp.open("GET",url,true);
+        xmlhttp.open("GET", url, true);
 
         //4，发送ajax请求
-            xmlhttp.send();
+        xmlhttp.send();
     }
 </script>
 用户名:<input type="text" name="username" onblur="checkUsername(this.value);"><span id="nameTipMsg"></span><br>
